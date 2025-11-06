@@ -1,0 +1,12 @@
+# Основные зависимости для тестирования
+playwright>=1.40.0
+pytest>=7.4.0
+pytest-playwright>=0.4.0
+pytest-rerunfailures>=12.0
+
+# Загрузка переменных окружения из .env файла
+python-dotenv>=1.0.0
+
+# Applitools Eyes для визуального тестирования
+eyes-playwright>=5.0.0
+

@@ -5,7 +5,7 @@ class BasePage:
         self.page = page
 
     def visit(self, url: str):
-        self.page.goto(url, wait_until="networkidle")
+        self.page.goto(url,wait_until="domcontentloaded")
 
     def reload(self):
-        self.page.reload(wait_until="networkidle")
+        self.page.reload()
