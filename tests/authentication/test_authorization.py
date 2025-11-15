@@ -1,9 +1,23 @@
+import allure
 import pytest
 from pages.authentication.login_page import LoginPage
+from tools.allure.tags import AllureTag
+from tools.allure.epics import AllureEpic
+from tools.allure.features import AllureFeature
+from tools.allure.stories import AllureStory
+from allure_commons.types import Severity
+
 
 
 @pytest.mark.regression
 @pytest.mark.authorization
+@allure.tag(AllureTag.AUTHORIZATION, AllureTag.REGRESSION)
+@allure.epic(AllureEpic.LMS)
+@allure.feature(AllureFeature.AUTHENTICATION)
+@allure.story(AllureStory.AUTHORIZATION)
+@allure.parent_suite(AllureEpic.LMS)
+@allure.suite(AllureFeature.AUTHENTICATION)
+@allure.sub_suite(AllureStory.AUTHORIZATION)
 class TestAuthorization:
     @pytest.mark.flaky(reruns=5)
     @pytest.mark.parametrize(
@@ -14,6 +28,8 @@ class TestAuthorization:
             ("  ", "password")
         ]
     )
+    @allure.severity(Severity.CRITICAL)
+    @allure.title("User login with wrong email or password")
     def test_wrong_email_or_password_authorization(self, login_page: LoginPage, email: str, password: str):
         login_page.visit(url="https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login")
         login_page.login_form.fill(email=email, password=password)
