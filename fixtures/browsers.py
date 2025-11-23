@@ -1,25 +1,8 @@
-import allure
 import pytest
-from playwright.sync_api import Playwright, Page
+from playwright.sync_api import Playwright
 from _pytest.fixtures import SubRequest
 from pages.authentication.registration_page import RegistrationPage
-
-
-@pytest.fixture
-def chromium_page(request: SubRequest, playwright: Playwright) -> Page:
-    browser = playwright.chromium.launch(headless=False)
-    context = browser.new_context()
-    context.tracing.start(
-        screenshots=True,
-        snapshots=True,
-        sources=True
-    )
-    yield context.new_page()
-
-    context.tracing.stop(path=f"./tracing/{request.node.name}.zip")
-    browser.close()
-
-    allure.attach.file(source=f"./tracing/{request.node.name}.zip", name="tracing", extension="zip")
+from tools.playwright.page import initialize_playwright_page
 
 
 @pytest.fixture(scope="session")
@@ -36,18 +19,14 @@ def initialize_browser_state(playwright: Playwright):
     context.storage_state(path="browser-context.json")
     browser.close()
 
+@pytest.fixture
+def chromium_page(request: SubRequest, playwright: Playwright):
+    yield from initialize_playwright_page(playwright=playwright, test_name=request.node.name)
+
 @pytest.fixture(scope="function")
-def chromium_page_with_state(request: SubRequest, initialize_browser_state, playwright: Playwright) -> Page:
-    browser = playwright.chromium.launch(headless=False)
-    context = browser.new_context(storage_state="browser-context.json")
-    context.tracing.start(
-        screenshots=True,
-        snapshots=True,
-        sources=True
+def chromium_page_with_state(request: SubRequest, playwright: Playwright, initialize_browser_state):
+    yield from initialize_playwright_page(
+        playwright=playwright,
+        test_name=request.node.name,
+        storage_state="browser-context.json"
     )
-    yield context.new_page()
-
-    context.tracing.stop(path=f"./tracing/{request.node.name}.zip")
-    browser.close()
-
-    allure.attach.file(source=f"./tracing/{request.node.name}.zip", name="tracing", extension="zip")
