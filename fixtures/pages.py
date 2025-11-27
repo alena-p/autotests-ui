@@ -5,6 +5,7 @@ from pages.authentication.login_page import LoginPage
 from pages.authentication.registration_page import RegistrationPage
 from pages.courses.courses_list_page import CoursesListPage
 from pages.courses.create_course_page import CreateCoursePage
+from pages.authentication.login_page import AgentqlLoginPage
 
 @pytest.fixture
 def login_page(chromium_page: Page) -> LoginPage:
@@ -29,3 +30,7 @@ def courses_list_page(chromium_page_with_state: Page) -> CoursesListPage:
 @pytest.fixture
 def create_course_page(chromium_page_with_state: Page) -> CreateCoursePage:
     return CreateCoursePage(page=chromium_page_with_state)
+
+@pytest.fixture
+def agentql_login_page(agentql_chromium_page: Page):
+    return AgentqlLoginPage(agentql_chromium_page)
