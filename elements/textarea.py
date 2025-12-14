@@ -3,6 +3,9 @@ import allure
 from elements.base_element import BaseElement
 from playwright.sync_api import expect, Locator
 
+from tools.logger import get_logger
+
+logger = get_logger("TEXT_AREA")
 
 class TextArea(BaseElement):
 
@@ -14,11 +17,17 @@ class TextArea(BaseElement):
         return super().get_locator(nth, **kwargs).locator("textarea").first
 
     def fill(self, value, nth: int = 0, **kwargs):
-        with allure.step(f"Filling {self.type_of} '{self.name}' with a '{value}'"):
+        step = f"Filling {self.type_of} '{self.name}' with a '{value}'"
+
+        with allure.step(step):
             locator = self.get_locator(nth, **kwargs)
+            logger.info(step)
             locator.fill(value)
 
     def check_have_value(self, value,nth: int = 0,  **kwargs):
-        with allure.step(f"Checking that {self.type_of} '{self.name}' has value a '{value}'"):
+        step = f"Checking that {self.type_of} '{self.name}' has value a '{value}'"
+
+        with allure.step(step):
             locator = self.get_locator(nth, **kwargs)
+            logger.info(step)
             expect(locator).to_have_value(value)
