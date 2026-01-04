@@ -1,5 +1,3 @@
-from multiprocessing.reduction import steal_handle
-
 import allure
 
 from elements.base_element import BaseElement
