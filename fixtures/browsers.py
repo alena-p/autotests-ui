@@ -1,6 +1,6 @@
 import pytest
-from _pytest.fixtures import SubRequest
 from playwright.sync_api import Playwright
+from _pytest.fixtures import SubRequest
 from pages.authentication.registration_page import RegistrationPage
 from tools.playwright.page import initialize_playwright_page
 from config import settings
