@@ -1,0 +1,11 @@
+INFO     BASE_PAGE:base_page.py:18 Opening the AppRoute.LOGIN
+INFO     BASE_ELEMENT:base_element.py:23 Getting locator with 'data_test_id=login-form-email-input' at index '0'
+INFO     INPUT:input.py:24 Filling input 'Login email' with a 'user.name@gmail.com'
+INFO     BASE_ELEMENT:base_element.py:23 Getting locator with 'data_test_id=login-form-password-input' at index '0'
+INFO     INPUT:input.py:24 Filling input 'Login password' with a '  '
+INFO     BASE_ELEMENT:base_element.py:23 Getting locator with 'data_test_id=login-page-login-button' at index '0'
+INFO     BASE_ELEMENT:base_element.py:31 Clicking button 'Login'
+INFO     BASE_ELEMENT:base_element.py:23 Getting locator with 'data_test_id=login-page-wrong-email-or-password-alert' at index '0'
+INFO     BASE_ELEMENT:base_element.py:39 Check that text 'Alert' is visible
+INFO     BASE_ELEMENT:base_element.py:23 Getting locator with 'data_test_id=login-page-wrong-email-or-password-alert' at index '0'
+INFO     BASE_ELEMENT:base_element.py:47 Check that text 'Alert' has text 'Wrong email or password'
