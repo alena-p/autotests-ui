@@ -1,6 +1,6 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from typing import Self
-from pydantic import EmailStr, FilePath, HttpUrl, DirectoryPath, BaseModel, Field
+from pydantic import EmailStr, FilePath, HttpUrl, DirectoryPath, BaseModel
 from enum import Enum
 
 
