@@ -9,7 +9,7 @@ from tools.routes import AppRoute
 
 @pytest.fixture(scope="session")
 def initialize_browser_state(playwright: Playwright):
-    browser = playwright.chromium.launch(headless=False)
+    browser = playwright.chromium.launch(headless=settings.headless)
     context = browser.new_context(base_url=settings.get_base_url())
     page = context.new_page()
 
