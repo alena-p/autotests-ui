@@ -34,7 +34,6 @@ class BaseElement:
             selector_type=SelectorType.XPATH
         )
 
-
     def click(self, nth: int = 0, **kwargs):
         step = f"Clicking {self.type_of} '{self.name}'"
 
